@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{% url 'send_invoice' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="draft_invoice" value="{{draft_invoice}}">{{draft_invoice}}
+        <button type="submit">Send Invoice</button>
+        <a href="{% url 'delete_invoice' %}?invoice={{draft_invoice}}">Delete</a>For Merchant Use Only
+    </form>
+</body>
+</html>

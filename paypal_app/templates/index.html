@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buy cool new product</title>
+    <script src="https://js.stripe.com/v3/"></script> 
+  </head>
+  <body>
+    <section>
+      {% for product in products %}
+      <form action="{% url 'add_to_cart' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{product.id}}">
+        <img src="{{product.image.url}}" height="200" width="250" alt="image not found" >
+        <div><input type="hidden" name="product_name" value="{{product.product_name}}">{{product.product_name}}</div>
+        <div>Description: <input type="hidden" name="description" value="{{product.description}}">{{product.description}}</div>
+        <div>Price : <input type="hidden" name="amount" value="{{product.price}}">{{product.price}}
+          Quantity : <input type="number" name="quantity" id="" value="1" min="1">
+        </div>
+        <button type="submit">Add To Cart</button>
+      </form>
+      {% endfor %}
+    </section>
+  </body>
+</html>
